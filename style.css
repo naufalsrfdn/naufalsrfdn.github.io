@@ -12,11 +12,11 @@
     --text-secondary: #9ca3af;
     --text-muted: #6b7280;
     
-    --card-bg: rgba(30, 41, 59, 0.4);
-    --card-border: rgba(139, 92, 246, 0.2);
-    --card-hover: rgba(139, 92, 246, 0.4);
+    --card-bg: rgba(31, 28, 63, 0.6);
+    --card-border: rgba(255, 255, 255, 0.15);
+    --card-hover: rgba(139, 92, 246, 0.5);
     
-    --nav-bg: rgba(15, 12, 41, 0.8);
+    --nav-bg: rgba(15, 12, 41, 0.6);
     
     --font-main: 'Inter', sans-serif;
     
@@ -45,6 +45,7 @@ body {
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+    animation: bodyFadeIn 1.2s ease-in forwards;
 }
 
 img {
@@ -122,8 +123,11 @@ a {
 }
 
 .bg-alt {
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .text-center {
@@ -163,10 +167,11 @@ a {
 
 .navbar.scrolled {
     background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: 1rem 0;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -188,6 +193,7 @@ a {
 .nav-links {
     display: flex;
     gap: 2rem;
+    perspective: 1000px;
 }
 
 .nav-links a {
@@ -196,12 +202,19 @@ a {
     color: var(--text-primary);
     position: relative;
     padding: 5px 0;
-    transition: var(--transition-fast);
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+    color: var(--accent-primary);
+    transform: translateY(-4px) translateZ(15px) rotateX(12deg) scale(1.08);
+    text-shadow: 0 8px 25px var(--accent-glow), 0 0 10px var(--accent-primary);
+}
+
 .nav-links a.active {
     color: var(--accent-primary);
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .nav-links a::after {
@@ -214,6 +227,7 @@ a {
     background: var(--accent-primary);
     transition: var(--transition-normal);
     box-shadow: 0 0 10px var(--accent-primary);
+    border-radius: 2px;
 }
 
 .nav-links a:hover::after,
@@ -402,9 +416,13 @@ a {
     color: var(--text-secondary);
     padding: 2rem;
     background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 16px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .skills-container {
@@ -416,11 +434,15 @@ a {
 .skill-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     padding: 1.5rem;
     border-radius: 12px;
     text-align: left;
     transition: var(--transition-normal);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .skill-card:hover {
@@ -486,11 +508,15 @@ a {
 
 .timeline-content {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     padding: 1.5rem;
     border-radius: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: var(--transition-normal);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .timeline-content:hover {
@@ -535,13 +561,17 @@ a {
 
 .project-card {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: var(--transition-normal);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover {
@@ -650,14 +680,18 @@ a {
     display: flex;
     align-items: center;
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     padding: 1.5rem;
     border-radius: 16px;
     transition: var(--transition-normal);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .contact-item-box::before {
@@ -746,9 +780,14 @@ a {
     text-align: center; 
     margin-top: 2rem;
     padding: 3rem;
-    background: rgba(15, 12, 41, 0.6);
+    background: var(--card-bg);
     border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .cta-footer h2 {
@@ -778,8 +817,12 @@ a {
     background: var(--card-bg);
     padding: 2.5rem;
     border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .form-group {
@@ -834,6 +877,82 @@ a {
     color: #ef4444;
 }
 
+/* Minimal Body Fade In to Preserve Position Fixed */
+@keyframes bodyFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Advanced Cursor Elements */
+html, body, *, a, button, input, textarea, .contact-item-box, .project-card, .skill-card {
+    cursor: none !important;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-primary);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+}
+
+.cursor-outline {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--accent-glow);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 0 15px var(--accent-glow);
+    opacity: 0;
+    will-change: transform;
+    backdrop-filter: blur(2px);
+}
+
+.cursor-glow-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, rgba(139, 92, 246, 0.1) 30%, transparent 70%);
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    mix-blend-mode: screen;
+    will-change: transform, opacity;
+}
+
+.mouse-particle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    box-shadow: 0 0 10px var(--accent-primary);
+    mix-blend-mode: screen;
+}
+
 /* Animations */
 @keyframes fadeUp {
     from {
@@ -862,16 +981,17 @@ a {
     to { transform: translateY(-15px) rotate(10deg); }
 }
 
-/* Intersection Observer Classes */
+/* Intersection Observer Classes - Aggressive Bouncy Smoothness */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(50px) scale(0.9);
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
 }
 
 .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* Responsive Design */
