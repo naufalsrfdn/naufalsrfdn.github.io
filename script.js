@@ -93,5 +93,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Advanced Mouse Effect removed for Neobrutalism styling
+
+    // Typing Effect Implementation
+    const typingElement = document.getElementById('typing-text');
+    if (typingElement) {
+        const nameText = "Naufal Syarifuddin";
+        let isDeleting = false;
+        let charIndex = nameText.length;
+        let typingSpeed = 100;
+
+        function typeLoop() {
+            const currentDisplay = nameText.substring(0, charIndex);
+            typingElement.innerHTML = currentDisplay;
+
+            if (!isDeleting && charIndex < nameText.length) {
+                charIndex++;
+                typingSpeed = 100;
+            } else if (isDeleting && charIndex > 0) {
+                charIndex--;
+                typingSpeed = 50;
+            } else if (!isDeleting && charIndex === nameText.length) {
+                isDeleting = true;
+                typingSpeed = 2000; // Pause at the end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typingSpeed = 500; // Pause before starting again
+            }
+
+            setTimeout(typeLoop, typingSpeed);
+        }
+        
+        typeLoop();
+    }
 });
 
