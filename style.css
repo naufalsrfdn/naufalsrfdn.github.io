@@ -414,9 +414,10 @@ a {
 }
 
 .skills-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
 }
 
 .skill-card {
@@ -424,9 +425,14 @@ a {
     border: var(--neo-border);
     padding: 1.5rem;
     border-radius: var(--neo-radius);
-    text-align: left;
+    text-align: center;
     transition: var(--transition-fast);
     box-shadow: var(--neo-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
 }
 
 .skill-card:hover {
@@ -435,19 +441,9 @@ a {
 }
 
 .skill-icon {
-    font-size: 2rem;
-    color: var(--accent-primary);
-    margin-bottom: 1rem;
-}
-
-.skill-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.skill-card p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 2.5rem;
+    margin: 0;
+    transition: var(--transition-fast);
 }
 
 /* Education Timeline */
@@ -1002,7 +998,7 @@ html, body, *, a, button, input, textarea, .contact-item-box, .project-card, .sk
     
     .hero-image-container { grid-row: 1; margin-bottom: 2rem; }
     
-    .skills-container { grid-template-columns: 1fr; }
+    /* .skills-container handled by flexbox */
     
     .timeline::before { left: 10px; }
     .timeline-item { padding-left: 40px; }
@@ -1088,30 +1084,9 @@ html, body, *, a, button, input, textarea, .contact-item-box, .project-card, .sk
     padding: 0.5rem 1.5rem;
 }
 
-/* Rolling Skills Animation Container */
+/* Skills Section Updates */
 .skills-wrapper {
-    height: 380px; 
-    overflow: hidden;
-    position: relative;
-    /* Fading effect on top & bottom for a real marquee feel */
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-}
-
-.skills-track {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    animation: scrollVertical 20s linear infinite;
-}
-
-.skills-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollVertical {
-    from { transform: translateY(0); }
-    to { transform: translateY(calc(-50% - 0.75rem)); }
+    margin-top: 2rem;
 }
 
 /* Education Timeline Logos */
