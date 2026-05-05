@@ -1,0 +1,25 @@
+name: Deploy Ke cPanel Otomatis
+
+on:
+  push:
+    branches:
+      - main # nama branch utama (main atau master)
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Ambil Kode Terbaru
+      uses: actions/checkout@v3
+
+    - name: Sinkronisasi ke cPanel
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # folder lokal yang diupload (gunakan ./ untuk semua file)
+        local-dir: ./
+        # Biarkan ./ jika akun FTP sudah diarahkan ke folder subdomain
+        server-dir: ./public_html/
